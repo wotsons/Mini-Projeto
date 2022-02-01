@@ -1,16 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const db = require('./database/database');
 
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-const port = 3000;
+const port = 3001;
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`App running on port ${port}.`);
 });
 
-const db = require('./database/database');
+app.post('/ponto', db.addPonto);
 
-app.post('/pontos', db.addPonto);
+app.get('/getponto', db.getPonto);
